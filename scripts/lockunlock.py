@@ -30,8 +30,8 @@ def lockUnlockClose(fp):
 
     latencylist.append((start, lockT, unlockT, closeT))
 
-def runTest(numberoffiles, loopeachfile):
-    for j in xrange(numberoffiles):
+def runTest(start, end, loopeachfile):
+    for j in xrange(start, end):
         for i in xrange(loopeachfile):
             fp = os.open("efs/lockunlockclose/file_"+str(j), os.O_WRONLY | os.O_DIRECT)
             try:
@@ -53,8 +53,19 @@ def printResult():
     for timestamp, lock, unlock, close in latencylist:
         f.write( str(timestamp) + "," + str(lock) + "," + str(unlock) + "," +str(close)+"\n")
     f.close()
+def main(argv):
+    runTest(argv)
 
-runTest(100,1)
-printResult();
+def main():
+    for arg in sys.argv:
+        print arg
+    if len(sys.argv) == 4 : 
+        runTest(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+    else: 
+        runTest(0, 1, 10000)
+    printResult();
+
+if __name__ == "__main__":
+    main()
 
 
