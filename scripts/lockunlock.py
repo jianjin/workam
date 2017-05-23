@@ -2,6 +2,7 @@ import os
 import fcntl
 import struct
 import time
+import sys
 
 latencylist = []
 
