@@ -3,15 +3,19 @@ import io,random, string, sys, os
 def createReadDelete(path, length, loop):
    filename = randomword(length)
    fullpath = path + filename
-   with io.open(fullpath, 'w') as f:
+   try:
+      with io.open(fullpath, 'w') as f:
         for x in range(10000):
-            f.write(u'bingo---------------------------------------------\n'+str(x))
+          f.write(u'bingo---------------------------------------------\n'+str(x))
 
-   for i in xrange(loop):
-      f = open(fullpath, 'r')
-      print(f.read())
-    
-   os.unlink(fullpath)
+      fd = os.open(fullpath, os.O_RDONLY | os.O_DIRECT)
+      for i in xrange(loop):
+          print(os.read(fd, 1000000))
+   except Exception as e:
+      print("Error:")
+      print(e)
+   finally:
+      os.unlink(fullpath)
 
 def randomword(length):
     return ''.join(random.choice(string.lowercase) for i in range(length))

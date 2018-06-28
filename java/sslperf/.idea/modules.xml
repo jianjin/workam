@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sslperf.iml" filepath="$PROJECT_DIR$/sslperf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sslperf_main.iml" filepath="$PROJECT_DIR$/.idea/modules/sslperf_main.iml" group="sslperf" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sslperf_test.iml" filepath="$PROJECT_DIR$/.idea/modules/sslperf_test.iml" group="sslperf" />
+    </modules>
+  </component>
+</project>

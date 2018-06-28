@@ -1,0 +1,26 @@
+apply plugin: 'java'
+task hello << {
+    println 'Hello world'
+}
+
+task compile << {
+
+}
+repositories {
+	mavenCentral()
+}
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
+    compile (
+        'io.netty:netty-all:4.1.16.Final',
+        'io.netty:netty-tcnative-boringssl-static:2.0.6.Final',
+        'io.netty:netty-tcnative:2.0.6.Final:linux-x86_64'
+    )
+}
+
+jar {
+    from {
+            configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+}
